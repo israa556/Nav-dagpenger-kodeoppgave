@@ -43,7 +43,9 @@ public class DagpengerKalkulator {
         double dagsats = 0;
 
         int arbeidsdagerIÅret = 260;
-        if (harRettigheterTilDagpenger() == true) {
+
+        //Forenklet if setningen siden metoden allerede returnerer en boolean-verdi
+        if (harRettigheterTilDagpenger()) {
 
             // Endret fra == til equals() fordi equals() sammenligner tekstinnhold
             if (velgBeregningsMetode().equals("SISTE_ÅRSLØNN")) {
