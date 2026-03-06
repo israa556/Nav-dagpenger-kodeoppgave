@@ -47,12 +47,15 @@ public class DagpengerKalkulator {
         //Forenklet if setningen siden metoden allerede returnerer en boolean-verdi
         if (harRettigheterTilDagpenger()) {
 
+            //lagrer beregningsmetoden i en variabel for å unngå å kalle samme metode flere ganger
+            String beregningsMetode = velgBeregningsMetode();
+
             // Endret fra == til equals() fordi equals() sammenligner tekstinnhold
-            if (velgBeregningsMetode().equals("SISTE_ÅRSLØNN")) {
+            if (beregningsMetode.equals("SISTE_ÅRSLØNN")) {
                 dagsats = Math.ceil(hentÅrslønnVedIndeks(0).hentÅrslønn() / arbeidsdagerIÅret);
-            } else if (velgBeregningsMetode().equals("GJENNOMSNITTET_AV_TRE_ÅR")) {
+            } else if (beregningsMetode.equals("GJENNOMSNITTET_AV_TRE_ÅR")) {
                 dagsats = Math.ceil((summerNyligeÅrslønner(3) / 3) / arbeidsdagerIÅret);
-            } else if (velgBeregningsMetode().equals("MAKS_ÅRLIG_DAGPENGERGRUNNLAG")) {
+            } else if (beregningsMetode.equals("MAKS_ÅRLIG_DAGPENGERGRUNNLAG")) {
                 dagsats = Math.ceil(grunnbeløpVerktøy.hentMaksÅrligDagpengegrunnlag() / arbeidsdagerIÅret);
             }
         }
