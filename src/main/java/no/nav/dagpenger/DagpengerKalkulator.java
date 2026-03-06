@@ -42,7 +42,8 @@ public class DagpengerKalkulator {
     public double kalkulerDagsats() {
         double dagsats = 0;
 
-        int arbeidsdagerIÅret = 260;
+        //Bruker konstant istednfor magic number for å gjøre koden mer lesbar
+        private static final int ARBEIDSDAGER_I_ÅRET = 260;
 
         //Forenklet if setningen siden metoden allerede returnerer en boolean-verdi
         if (harRettigheterTilDagpenger()) {
@@ -52,11 +53,11 @@ public class DagpengerKalkulator {
 
             // Endret fra == til equals() fordi equals() sammenligner tekstinnhold
             if (beregningsMetode.equals("SISTE_ÅRSLØNN")) {
-                dagsats = Math.ceil(hentÅrslønnVedIndeks(0).hentÅrslønn() / arbeidsdagerIÅret);
+                dagsats = Math.ceil(hentÅrslønnVedIndeks(0).hentÅrslønn() / ARBEIDSDAGER_I_ÅRET);
             } else if (beregningsMetode.equals("GJENNOMSNITTET_AV_TRE_ÅR")) {
-                dagsats = Math.ceil((summerNyligeÅrslønner(3) / 3) / arbeidsdagerIÅret);
+                dagsats = Math.ceil((summerNyligeÅrslønner(3) / 3) / ARBEIDSDAGER_I_ÅRET);
             } else if (beregningsMetode.equals("MAKS_ÅRLIG_DAGPENGERGRUNNLAG")) {
-                dagsats = Math.ceil(grunnbeløpVerktøy.hentMaksÅrligDagpengegrunnlag() / arbeidsdagerIÅret);
+                dagsats = Math.ceil(grunnbeløpVerktøy.hentMaksÅrligDagpengegrunnlag() / ARBEIDSDAGER_I_ÅRET);
             }
         }
 
