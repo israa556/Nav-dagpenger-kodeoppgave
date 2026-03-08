@@ -1,3 +1,5 @@
+package no.nav.dagpenger;
+
 
 // Representerer resultatet av en dagpengerberegning som
 // senere kan behandles av saksbehandler

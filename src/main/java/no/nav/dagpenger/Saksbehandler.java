@@ -1,3 +1,8 @@
+package no.nav.dagpenger;
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Saksbehandler {
 
     private final String navn;

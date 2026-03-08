@@ -4,6 +4,7 @@ import no.nav.dagpenger.DagpengerKalkulator;
 import no.nav.dagpenger.Resultat;
 import no.nav.årslønn.Årslønn;
 
+
 public class Main {
     public static void main(String[] args) {
         DagpengerKalkulator dagpengerKalkulator = new DagpengerKalkulator();
