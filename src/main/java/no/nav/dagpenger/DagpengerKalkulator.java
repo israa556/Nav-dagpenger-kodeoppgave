@@ -2,6 +2,7 @@ package no.nav.dagpenger;
 
 import no.nav.grunnbeløp.GrunnbeløpVerktøy;
 import no.nav.årslønn.Årslønn;
+import no.nav.dagpenger.Resultat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,8 +25,10 @@ import java.util.List;
  */
 public class DagpengerKalkulator {
 
-    public final GrunnbeløpVerktøy grunnbeløpVerktøy;
+    //Bruker konstant istednfor magic number for å gjøre koden mer lesbar
+    private static final int ARBEIDSDAGER_I_ÅRET = 260;
 
+    public final GrunnbeløpVerktøy grunnbeløpVerktøy;
     public final List<Årslønn> årslønner;
 
     public DagpengerKalkulator() {
@@ -41,9 +44,6 @@ public class DagpengerKalkulator {
      */
     public double kalkulerDagsats() {
         double dagsats = 0;
-
-        //Bruker konstant istednfor magic number for å gjøre koden mer lesbar
-        private static final int ARBEIDSDAGER_I_ÅRET = 260;
 
         //Forenklet if setningen siden metoden allerede returnerer en boolean-verdi
         if (harRettigheterTilDagpenger()) {
@@ -140,5 +140,20 @@ public class DagpengerKalkulator {
     public void sorterÅrslønnerBasertPåNyesteÅrslønn() {
         this.årslønner.sort(Comparator.comparingInt(Årslønn::hentÅretForLønn));
         Collections.reverse(this.årslønner);
+    }
+
+
+    public Resultat kalkulerResultat(){
+        double dagsats = kalkulerDagsats();
+        String type;
+
+        if(!harRettigheterTilDagpenger()){
+            type = "AVSLAG_PGA_LAV_INNTEKT";
+        } else if(velgBeregningsMetode().equals("MAKS_ÅRLIG_DAGPENGERGRUNNLAG")){
+            type = "INNVILGET_MED_MAKSSATS";
+        } else {
+            type = "INNVILGET";
+        }
+        return new Resultat(dagsats, type);
     }
 }
