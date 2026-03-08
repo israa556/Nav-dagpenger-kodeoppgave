@@ -16,7 +16,7 @@ public class Main {
         System.out.println();
 
         Resultat resultat = dagpengerKalkulator.kalkulerResultat();
-        System.out.println();
+        System.out.println("Resultater:");
         System.out.println("Dagsats: " + resultat.hentDagsats());
         System.out.println("Type: " + resultat.hentType());
         System.out.println("Status: " + resultat.hentStatus());
